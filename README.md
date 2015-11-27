@@ -4,8 +4,8 @@
 ## 如何运行
 
 ``` bash
-    git clone https://github.com/huhulab/demo-cond-select.git
-    npm install
-    npm start
-    // 打开浏览器 http://localhost:3002
+git clone https://github.com/huhulab/demo-cond-select.git
+npm install
+npm start
+# 打开浏览器 http://localhost:3002
 ```
