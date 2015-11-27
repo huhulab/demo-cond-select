@@ -25,10 +25,18 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'src')
-    }]
+    loaders: [
+      {
+        test: /\.(js|jsx)$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, 'src')
+      }, {
+        test: /\.(css|less)$/,
+        loaders: ["style", "css", "less"]
+      }, {
+        test: /\.(png|woff|woff2|eot|ttf|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=100000'
+      }
+    ]
   }
 };
