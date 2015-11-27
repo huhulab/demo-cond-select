@@ -1,12 +1,15 @@
 import React from 'react';
-import { Radio } from 'antd';
+import { Radio, Button } from 'antd';
 
-const RadioButton = React.createFactory(Radio.Button);
 const RadioItem = React.createFactory(Radio);
+const RadioButton = React.createFactory(Radio.Button);
 const RadioGroup = React.createFactory(Radio.Group);
+const ButtonItem = React.createFactory(Button);
 const div = React.createFactory('div');
 const span = React.createFactory('span');
+const strong = React.createFactory('strong');
 const a = React.createFactory('a');
+const hr = React.createFactory('hr');
 
 export const App = React.createClass({
   displayName: 'App',
@@ -20,11 +23,13 @@ export const App = React.createClass({
       colors: {},
       sizes: {},
       styles: {},
+      total: 0,
     };
     this.props.records.forEach(function(record) {
       state.colors[record.color] = false;
       state.sizes[record.size] = false;
       state.styles[record.style] = false;
+      state.total += record.quantity;
     });
     return state;
   },
@@ -39,7 +44,8 @@ export const App = React.createClass({
       record: undefined,
       colors: {},
       sizes: {},
-      styles: {}
+      styles: {},
+      total: 0,
     };
 
     Object.keys(newState).forEach(function(name) {
@@ -60,6 +66,7 @@ export const App = React.createClass({
       localState.colors[record.color] = false;
       localState.sizes[record.size] = false;
       localState.styles[record.style] = false;
+      localState.total += record.quantity;
     });
 
     this.setState(localState);
@@ -78,10 +85,10 @@ export const App = React.createClass({
 
   render() {
     const self = this;
-    const groupStyle = {margin: '10px'};
+    const groupStyle = {margin: '10px 2px'};
     const wrapperStyle = {
       margin: '60px auto',
-      padding: '10px',
+      padding: '20px',
       width: '480px',
       background: '#F0F0F0',
       borderRadius: '5px'
@@ -110,18 +117,15 @@ export const App = React.createClass({
           });
           console.log('click style:', e.target.value,  self.state);
         })),
-      a({onClick: function(e) {
+      ButtonItem({type: 'primary', onClick: function(e) {
         self.updateState({
           color: undefined,
           size: undefined,
           style: undefined
         });
-      }},'重置')
+      }},'Reset'),
+      div({}, "Quantity : ", strong({}, this.state.total))
     ];
-    if (this.state.record !== undefined) {
-      /* DOM */
-      children.push(div({}, "剩余数量 : ", span({}, this.state.record.quantity)));
-    }
 
     /* DOM */
     return div({style: wrapperStyle}, ...children);
