@@ -9,3 +9,5 @@ npm install
 npm start
 # 打开浏览器 http://localhost:3002
 ```
+
+> Fork from: https://github.com/gaearon/react-transform-boilerplate
