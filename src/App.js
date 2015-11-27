@@ -29,14 +29,6 @@ export const App = React.createClass({
     return state;
   },
 
-  reset() {
-    this.setState({
-      color: undefined,
-      size: undefined,
-      style: undefined,
-    });
-  },
-
   refreshChoices(shouldReset, newState) {
     const self = this;
     let records = this.props.records;
@@ -121,7 +113,11 @@ export const App = React.createClass({
           console.log('click style:', e.target.value,  self.state);
         })),
       a({onClick: function(e) {
-        self.reset();
+        self.refreshChoices(true, {
+          color: undefined,
+          size: undefined,
+          style: undefined
+        });
       }},'重置')
     ];
     if (this.state.record !== undefined) {
