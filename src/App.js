@@ -71,6 +71,7 @@ export const App = React.createClass({
   },
 
   renderGroup(flags, value, onChange) {
+    /* DOM */
     return RadioGroup(
       {value: value, onChange: onChange},
       ...Object.keys(flags).map(function(flag) {
@@ -90,6 +91,7 @@ export const App = React.createClass({
       borderRadius: '5px'
     };
 
+    /* DOM */
     let children = [
       div({style: groupStyle}, this.renderGroup(
         self.state.colors, self.state.color, function(e) {
@@ -121,9 +123,11 @@ export const App = React.createClass({
       }},'重置')
     ];
     if (this.state.record !== undefined) {
+      /* DOM */
       children.push(div({}, "剩余数量 : ", span({}, this.state.record.quantity)));
     }
 
+    /* DOM */
     return div({style: wrapperStyle}, ...children);
   }
 })
