@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { App } from './App.jsx';
+import { App } from './App';
 
 const records = [
   {color: 'red', size: 'S', style: 'thin', quantity: 1},
