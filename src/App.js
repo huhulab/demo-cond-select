@@ -29,7 +29,7 @@ export const App = React.createClass({
     return state;
   },
 
-  refreshChoices(shouldReset, newState) {
+  updateState(newState) {
     const self = this;
     let records = this.props.records;
     let localState = {
@@ -42,11 +42,9 @@ export const App = React.createClass({
       styles: {}
     };
 
-    if (shouldReset) {
-      Object.keys(newState).forEach(function(name) {
-        localState[name] = newState[name];
-      });
-    }
+    Object.keys(newState).forEach(function(name) {
+      localState[name] = newState[name];
+    });
 
     ['color', 'size', 'style'].forEach(function(name) {
       const value = localState[name]
@@ -64,10 +62,8 @@ export const App = React.createClass({
       localState.styles[record.style] = false;
     });
 
-    if (shouldReset) {
-      this.setState(localState);
-    }
-    console.log('refreshChoices:', shouldReset, newState, this.state, records);
+    this.setState(localState);
+    console.log('updateState:', newState, this.state, records);
   },
 
   renderGroup(flags, value, onChange) {
@@ -95,27 +91,27 @@ export const App = React.createClass({
     let children = [
       div({style: groupStyle}, this.renderGroup(
         self.state.colors, self.state.color, function(e) {
-          self.refreshChoices(true, {
+          self.updateState({
             color: e.target.value === self.state.color ? undefined : e.target.value
           });
           console.log('click color:', e.target.value, self.state);
         })),
       div({style: groupStyle}, this.renderGroup(
         self.state.sizes, self.state.size, function(e) {
-          self.refreshChoices(true, {
+          self.updateState({
             size: e.target.value === self.state.size ? undefined : e.target.value
           });
           console.log('click size:', e.target.value, self.state);
         })),
       div({style: groupStyle}, this.renderGroup(
         self.state.styles, self.state.style, function(e) {
-          self.refreshChoices(true, {
+          self.updateState({
             style: e.target.value === self.state.style ? undefined : e.target.value
           });
           console.log('click style:', e.target.value,  self.state);
         })),
       a({onClick: function(e) {
-        self.refreshChoices(true, {
+        self.updateState({
           color: undefined,
           size: undefined,
           style: undefined
