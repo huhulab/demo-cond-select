@@ -17,5 +17,7 @@ const records = [
   /* Black */
   {color: 'black', size: 'L', style: 'fat', quantity: 7},
 ]
+const fields = ['color', 'size', 'style'];
 
-render(<App records={records} />, document.getElementById('root'));
+
+render(<App fields={fields} records={records} />, document.getElementById('root'));
