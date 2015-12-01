@@ -55,6 +55,6 @@
   "dependencies": {
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "antd": "0.10.1"
+    "antd": "^0.10.1"
   }
 }
